@@ -1,0 +1,131 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MultiplexKino.Areas.Identity.Data
+
+@inject SignInManager<MultiplexKinoUser> SignInManager
+@inject UserManager<MultiplexKinoUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MultiplexKino</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MultiplexKino.styles.css" asp-append-version="true" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+</head>
+
+<body>
+    <header>
+        <h4 class="logo">Multiplex kino</h4>
+        <nav>
+            <ul class="navigacijaLink">
+                <li>
+                    <a class="linkss" asp-area="" asp-controller="Projekcija" asp-action="UcitajSveProjekcije">Početna</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filmovi
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Akcija" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Akcija</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Komedija" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Komedija</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Drama" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Drama</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Triler" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Triler</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Kriminalisticki" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Kriminalistički</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Sci-fi" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Sci-fi</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Horor" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Horor</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Historijski" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Historijski</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Animirani" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Animirani</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Porodicni" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Porodični</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Avanturisticki" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Avanturistički</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-route-id="Fantazija" asp-area="" asp-controller="Projekcija" asp-action="UcitajProjekcijePoZanru">Fantazija</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="linkss" asp-area="" asp-controller="Informacija" asp-action="UcitajInformacije">Informacije</a>
+                </li>
+                <li>
+                    <a class="linkss" asp-area="" asp-controller="Kontakt" asp-action="Index">Kontakt</a>
+                </li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Korisnik
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" style="color:white; font-family:Arial;" asp-area="" asp-controller="RoleViews" asp-action="Manager">Manager</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" style="color:white; font-family:Arial;" asp-area="" asp-controller="Film" asp-action="Index">Admin</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" style="color:indianred; font-family:Arial;" asp-area="" asp-controller="User" asp-action="Index">Korisnici</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <div>
+            <partial name="_LoginPartial"></partial>
+        </div>
+    </header>
+
+    <div class="pageContainer" >
+        @RenderBody()
+    </div>
+
+    @*    <footer class="border-top footer ">
+        <div class="container">
+        &copy; 2022 - MultiplexKino - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+        </footer>*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Styles", required: false)
+
+</body>
+</html>

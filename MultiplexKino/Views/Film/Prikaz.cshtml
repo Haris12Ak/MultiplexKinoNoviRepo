@@ -1,0 +1,112 @@
+﻿@model MultiplexKino.Models.Film.FilmPrikazVM
+
+@{
+    ViewData["Title"] = $"Film: '{Model.Naslov}' ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageContainer">
+    <div class="adminContainer">
+
+        <a class="adminLink" asp-area="" asp-controller="Film" asp-action="Index">Upravljanje filmovima</a>
+
+        <a class="adminLink" asp-area="" asp-controller="Projekcija" asp-action="Index">Upravljanje projekcijama</a>
+
+        <a class="adminLink" asp-area="" asp-controller="Projekcija" asp-action="Index">Upravljanje Informacijama</a>
+    </div>
+
+    <div style="margin-top:50px">
+        <h1 style="color:ghostwhite">@ViewData["Title"]</h1>
+        <hr style="color:whitesmoke"/>
+        <div>
+            <dl class="rowSlika">
+                @if (!string.IsNullOrEmpty(Model.Plakat))
+                {
+                    <img class="imgKupiKartu" style="width:410px; height:550px" src="@Model.Plakat" />
+                }
+                else
+                {
+                    <img class="imgKupiKartu" style="width:410px; height:550px" src="~/img/no-movie-posters.jpg" />
+                }
+                @if (!string.IsNullOrEmpty(Model.YouTubeId))
+                {
+                    <div class="YouTubeVideo" style="margin: 1% 0 0 8%">
+                        <span>
+                            <iframe width="870" height="500"
+                                src="https://www.youtube.com/embed/@Model.YouTubeId">
+                            </iframe>
+                        </span>
+                    </div>
+                }
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Naslov)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Trajanje)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Trajanje) minuta
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GodinaSnimanja)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GodinaSnimanja)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Zanr)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Zanr)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Reditelj)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Reditelj)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Glumci)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Glumci)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sadrzaj)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sadrzaj)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.VideoLink)
+                </dt>
+                <dd class="col-sm-10">
+                    <a href="@Html.DisplayFor(model => model.VideoLink)" target="_blank">@Html.DisplayFor(model => model.VideoLink)</a>
+                </dd>
+            </dl>
+            <hr style="color:whitesmoke"/>
+            @*<dl id="glumci"></dl>*@
+        </div>
+    </div>
+    <button class="buttonFilmPrikaz">
+        <a asp-action="Index">Nazad na listu</a>
+    </button>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.get("/Film/Glumci/@Model.Id",
+            function (data) {
+                $("#glumci").html("<hr/>" + data);
+            });
+    });
+</script>
+
+
+

@@ -1,0 +1,83 @@
+﻿@model MultiplexKino.Models.Film.FilmSnimiVM
+
+@{
+    ViewData["Title"] = "Uredi";
+
+    var zanrovi = ViewData["Zanrovi"] as IEnumerable<SelectListItem>;
+}
+
+<div class="pageContainer">
+    <h1 style="color:whitesmoke">Uredi film: '@Model.Naslov'</h1>
+    <hr style="color:whitesmoke"/>
+    <div class="row">
+        <div class="col-md-4">
+            <form class="formUrediFilm" asp-action="Uredi" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <div class="form-group">
+                    <label asp-for="Naslov" class="control-label"></label>
+                    <input asp-for="Naslov" class="form-control" />
+                    <span asp-validation-for="Naslov" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trajanje" class="control-label">Trajanje (min)</label>
+                    <input asp-for="Trajanje" class="form-control" />
+                    <span asp-validation-for="Trajanje" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GodinaSnimanja" class="control-label">Godina snimanja</label>
+                    <input asp-for="GodinaSnimanja" class="form-control" />
+                    <span asp-validation-for="GodinaSnimanja" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZanrId" class="control-label"></label>
+                    <select asp-for="ZanrId" asp-items="zanrovi" class="form-control"></select>
+                    <span asp-validation-for="ZanrId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Reditelj" class="control-label"></label>
+                    <input asp-for="Reditelj" class="form-control" />
+                    <span asp-validation-for="Reditelj" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Glumci" class="control-label">Glumci</label>
+                    <textarea asp-for="Glumci" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="Glumci" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VideoLink" class="control-label">Video link</label>
+                    <input asp-for="VideoLink" class="form-control" />
+                    <span asp-validation-for="VideoLink" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sadrzaj" class="control-label">Sadržaj</label>
+                    <textarea asp-for="Sadrzaj" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="Sadrzaj" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Plakat</label><br />
+                    @if (!string.IsNullOrEmpty(Model.Plakat))
+                    {
+                        <img src="@Model.Plakat" style="max-width:100px; max-height:100px" />
+                        @Html.ActionLink("Briši", "BrisiPlakat", new { id = Model.Id }, new {@class = "btn btn-link"})
+                        <br />
+                    }
+                    <input type="file" name="file" id="file" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="buttonFilmDodaj">
+        <a asp-action="Index">Nazad na listu</a>
+    </button>
+</div>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
+

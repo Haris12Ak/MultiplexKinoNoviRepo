@@ -1,0 +1,75 @@
+﻿@model MultiplexKino.Models.Projekcija.ProjekcijaSnimiVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var sala = ViewData["Sale"] as IEnumerable<SelectListItem>;
+    var filmovi = ViewData["Filmovi"] as IEnumerable<SelectListItem>;
+
+    decimal? cijena = null;
+
+    if (Model != null)
+    {
+        cijena = Model.Cijena;
+    }
+}
+
+<div class="pageContainer">
+    <h4 style="color:whitesmoke">Dodavanje projekcije</h4>
+    <hr style="color:whitesmoke" />
+    <div class="row">
+        <div class="col-md-4">
+            <form class="formProjekcija" asp-action="Dodaj">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FilmId" class="control-label"></label>
+                    <select style="width:30%" asp-for="FilmId" asp-items="filmovi" class="form-control"></select>
+                    <span asp-validation-for="FilmId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalaId" class="control-label"></label>
+                    <select style="width:30%" asp-for="SalaId" asp-items="sala" class="form-control"></select>
+                    <span asp-validation-for="SalaId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cijena" class="control-label"></label>
+                    <input style="width:30%" id="Cijena" name="Cijena" value="@cijena" class="form-control" />
+                    <span asp-validation-for="Cijena" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VrijediOd" class="control-label"></label>
+                    <input style="width:50%" id="VrijediOd" name="VrijediOd" type="date" placeholder="Izabri datum" class="form-control datepicker" autocomplete="off" />
+                    <span asp-validation-for="VrijediOd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VrijediDo" class="control-label"></label>
+                    <input style="width:50%" id="VrijediDo" name="VrijediDo" type="date" placeholder="Izabri datum" class="form-control datepicker" autocomplete="off" />
+                    <span asp-validation-for="VrijediDo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="btnListaDodaj">
+        <a asp-action="Index">Nazad na listu</a>
+    </button>
+
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
+
+<script>
+    $(function() {
+        $("#VrijediOd").datepicker({ dateFormat: 'dd.mm.yy' });
+        $("#VrijediDo").datepicker({ dateFormat: 'dd.mm.yy' });
+    });
+</script>
+

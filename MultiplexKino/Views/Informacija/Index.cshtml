@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MultiplexKino.Models.Informacija.InformacijeListaVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageContainer">
+    <div class="adminContainer">
+
+        <a class="adminLink" asp-area="" asp-controller="Film" asp-action="Index">Upravljanje filmovima</a>
+
+        <a class="adminLink" asp-area="" asp-controller="Projekcija" asp-action="Index">Upravljanje projekcijama</a>
+
+        <a class="adminLink" asp-area="" asp-controller="Projekcija" asp-action="Index">Upravljanje Informacijama</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naziv)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Opis)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Kreiran)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naziv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Opis)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kreiran)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Uredi", "Uredi", new { id = item.Id }, new {@class = "btn btn-primary"}) |
+                        @Html.ActionLink("Briši", "Brisi", new { id = item.Id }, new {@class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        <a asp-action="Dodaj" class="btn btn-success">Dodaj informaciju</a>
+    </p>
+
+</div>
+

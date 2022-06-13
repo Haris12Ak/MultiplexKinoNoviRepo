@@ -1,0 +1,24 @@
+﻿@model MultiplexKino.Models.Informacija.InformacijaPrikazVM
+
+@{
+    ViewData["Title"] = $"Informacija: '{Model.Naziv}'";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr style="color:whitesmoke"/>
+<div class="informacijaPrikaz">
+    <h2><img src="~/img/icons8-info-64.png" style="width:50px; height:50px" /> @Html.DisplayFor(model => model.Naziv)</h2>
+    <p style="padding-left:58px; font-size:1.1em; font-family:Candara Light">
+        Datum i vrijeme: @Html.DisplayFor(model => model.Kreiran)
+    </p>
+    <hr style="color:black"/>
+    <p style="padding-left:20px; font-size:1.7em; font-family:Calibri">
+        @Html.DisplayFor(model => model.Opis)
+    </p>
+</div>
+
+<button class="btnInformacijaPrikaz">
+    <a asp-action="UcitajInformacije">Nazad</a>
+</button>
+<hr style="color:whitesmoke"/>
+
+

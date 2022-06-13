@@ -1,0 +1,131 @@
+﻿
+@model MultiplexKino.Models.Projekcija.ProjekcijaKupiKartuVM
+
+@{
+    ViewData["Title"] = $"Odabrali ste film: '{ Model.Film.Naslov}' ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageContainer">
+    <h2 style="color:white; font-family:Calibri">@ViewData["Title"]</h2>
+    <hr style="color:antiquewhite" />
+    <div>
+        <dl class="rowSlika">
+            @if (!string.IsNullOrEmpty(Model.Film.Plakat))
+            {
+                <img class="imgKupiKartu" style="width:410px; height:550px; border-radius:2px" src="@Model.Film.Plakat" />
+            }
+            else
+            {
+                <img class="imgKupiKartu" style="width:410px; height:550px " src="~/img/no-movie-posters.jpg" />
+            }
+            @if (!string.IsNullOrEmpty(Model.Film.YouTubeId))
+            {
+                <div class="YouTubeVideo" style="margin: 1% 0 0 8%">
+                    <span>
+                        <iframe width="870" height="500"
+                            src="https://www.youtube.com/embed/@Model.Film.YouTubeId">
+                        </iframe>
+                    </span>
+                </div>
+            }
+        </dl>
+        <dl class="row" style="margin-left: 8px">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.Naslov)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.Naslov)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.Reditelj)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.Reditelj)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.Glumci)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.Glumci)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.Trajanje)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.Trajanje) minuta
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.GodinaSnimanja)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.GodinaSnimanja)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.Zanr)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.Zanr)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.VideoLink)
+            </dt>
+            <dd class="col-sm-10">
+                <a href="@Html.DisplayFor(model => model.Film.VideoLink)" target="_blank">@Html.DisplayFor(model => model.Film.VideoLink)</a>
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Film.Sadrzaj)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Film.Sadrzaj)
+            </dd>
+        </dl>
+        <hr style="color:antiquewhite" />
+        <dl class="row" style="margin-left: 8px">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sala)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Sala)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cijena)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cijena)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.VrijediOdDo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.VrijediOdDo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Kreiran)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Kreiran)
+            </dd>
+        </dl>
+        <hr style="color:antiquewhite" />
+        <dl id="datumi"></dl>
+    </div>
+
+
+    <a asp-controller="Projekcija" asp-action="UcitajSveProjekcije">
+        <button class="buttonNazad">Nazad</button>
+    </a>
+
+    <a asp-page="/CinemaHall/SeatSelection" asp-route-id="@Model.Film.Id" class="btn-select">Select</a>
+
+    @*<button class="buttonRezervisi">Rezerviši</button>*@
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.get("/Projekcija/Datumi/@Model.Id",
+            function (data) {
+                $("#datumi").html(data);
+            });
+    });
+</script>

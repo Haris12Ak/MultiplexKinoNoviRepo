@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MultiplexKino.Models.Projekcija.ProjekcijaListaVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="pageContainer">
+    <div class="adminContainer">
+
+        <a class="adminLink" asp-area="" asp-controller="Film" asp-action="Index">Upravljanje filmovima</a>
+
+        <a class="adminLink" asp-area="" asp-controller="Projekcija" asp-action="Index">Upravljanje projekcijama</a>
+
+        <a class="adminLink" asp-area="" asp-controller="Projekcija" asp-action="Index">Upravljanje Informacijama</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Plakat)
+                </th>
+                <th style="width:30%">
+                    @Html.DisplayNameFor(model => model.Film)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sala)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cijena)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VrijediOdDo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Plakat))
+                        {
+                            <img src="@item.Plakat" style="max-width:100px; max-height:100px" />
+                        }
+                        else
+                        {
+                            <img src="~/img/no-movie-posters.jpg" style="max-width:100px; max-height:100px" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Film)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sala)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cijena)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VrijediOdDo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Prikaz", "Prikaz", new {id = item.Id}, new {@class = "btn btn-info"}) |
+                        @Html.ActionLink("Uredi", "Uredi", new {id = item.Id}, new {@class = "btn btn-primary"}) |
+                        @Html.ActionLink("Briši", "Brisi", new {id = item.Id}, new {@class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        <a asp-action="Dodaj" class="btn btn-success">Dodaj projekciju</a>
+    </p>
+</div>

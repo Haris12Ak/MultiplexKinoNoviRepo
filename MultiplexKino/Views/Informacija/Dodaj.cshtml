@@ -1,0 +1,35 @@
+﻿@model MultiplexKino.Models.Informacija.InformacijaSnimiVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 style="color:whitesmoke">Dodavanje informacije</h4>
+<hr style="color:whitesmoke" />
+<div class="row">
+    <div class="formInformacija">
+        <form asp-action="Dodaj" method="post" enctype="multipart/form-data">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label style="color:whitesmoke; font-size:1.3em" asp-for="Naziv" class="control-label">Naziv informacije</label>
+                <input style="width:40%; border:1px solid black; color:white; background-color:rgb(255,255,255,.6)" asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label style="color:whitesmoke; font-size:1.3em" asp-for="Opis" class="control-label">Opis</label>
+                <textarea style="border:1px solid black; color:white; background-color:rgb(255,255,255,.6)" asp-for="Opis" class="form-control" rows="12"></textarea>
+                <span asp-validation-for="Opis" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="margin:15px 0 15px 5px">
+                <input type="submit" value="Snimi" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<button class="btnListaInformacija">
+    <a asp-action="Index">Nazad na listu</a>
+</button>

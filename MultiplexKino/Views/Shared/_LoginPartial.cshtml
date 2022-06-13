@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MultiplexKino.Areas.Identity.Data
+
+@inject SignInManager<MultiplexKinoUser> SignInManager
+@inject UserManager<MultiplexKinoUser> UserManager
+
+<style>
+    li, a.linkovi {
+        font-family: Arial;
+        font-weight: 500;
+        font-size: 16px;
+        color: #edf0f1;
+        text-decoration: none;
+    }
+
+    .navigacijaLinkovi {
+        list-style: none;
+    }
+
+        .navigacijaLinkovi li {
+            display: inline-block;
+            padding: 0px 10px;
+        }
+
+            .navigacijaLinkovi li a {
+                transition: all 0.3s ease 0s;
+                font-size: 1.2em;
+                font-family: Arial;
+                font-palette: light;
+                font-style: oblique;
+                color: white;
+            }
+
+                .navigacijaLinkovi li a:hover {
+                    color: blue;
+                }
+
+    button {
+        /*padding: 9px 25px;*/
+        background-color: rgba(0,136,169,1);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+        font-family: Arial;
+    }
+
+        button:hover {
+            background-color: indianred;
+        }
+
+</style>
+
+<ul class="navigacijaLinkovi">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a id="manage" class="linkovi" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Dobro došli: @UserManager.GetUserName(User)!</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a class="linkovi" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li>
+            <a class="linkovi" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
