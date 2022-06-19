@@ -7,6 +7,8 @@ namespace MultiplexKino.Areas.Identity.Data.EntityModels
         public Sala()
         {
             this.Projekcije = new HashSet<Projekcija>();
+            this.Sjedalo = new HashSet<Sjedalo>();
+
         }
 
         public int Id { get; set; }
@@ -17,5 +19,8 @@ namespace MultiplexKino.Areas.Identity.Data.EntityModels
         public int? BrojSjedista { get; set; }
 
         public virtual ICollection<Projekcija> Projekcije { get; set; }
+        public virtual ICollection<Sjedalo> Sjedalo { get; set; }
+
+
     }
 }

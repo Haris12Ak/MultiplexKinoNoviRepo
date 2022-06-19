@@ -6,6 +6,7 @@ using MultiplexKino.Areas.Identity.Data.EntityModels;
 using MultiplexKino.Helpers;
 using MultiplexKino.Models.Film;
 using MultiplexKino.Models.Projekcija;
+using MultiplexKino.Models.Rezervacija;
 using MultiplexKino.Services;
 using System.Collections.Generic;
 
@@ -383,6 +384,55 @@ namespace MultiplexKino.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Rezervisi(string id)
+        {
+            var sala = _dbContext.Sala
+                .Include(x => x.Sjedalo)
+                .FirstOrDefault(x => x.Naziv == id);
+
+
+            if (sala != null)
+            {
+                return View(new RezervacijaUcitajVM
+                {
+                    Id = sala.Id,
+                    Naziv = sala.Naziv,
+                    BrojSjedista = sala.BrojSjedista,
+                    Sjedala = sala.Sjedalo.ToList()
+                });
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public IActionResult PrikaziSjedala(string id)
+        {
+            var sala = _dbContext.Sala
+                .Include(x => x.Sjedalo)
+                .FirstOrDefault(x => x.Naziv == id);
+
+            if (sala != null)
+            {
+                var sjedala = _dbContext.Sjedalo
+                    .Select(x => new RezervacijaSjedalaVM
+                    {
+                        Id = x.Id,
+                        BrojSjedala = x.BrojSjedala,
+                        IsZauzeto = x.IsZauzeto
+                    }).ToList();
+
+                return View(sjedala);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
         #region Methods

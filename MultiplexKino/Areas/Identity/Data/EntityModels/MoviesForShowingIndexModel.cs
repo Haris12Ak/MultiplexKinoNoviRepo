@@ -2,10 +2,9 @@
 {
     public class MoviesForShowingIndexModel
     {
-        public IEnumerable<CinemaHall> CinemaHalls { get; set; }
-        public IEnumerable<Projekcija> Movies { get; set; }
-        public IEnumerable<Seats> Seats { get; set; }
-        public IEnumerable<SeatsForHall> SeatsForHalls { get; set; }
-        public IEnumerable<MoviesForShowing> MoviesForShowing { get; set; }
+        public IEnumerable<Film> Filmovi { get; set; }
+        public IEnumerable<Projekcija> Projekcije { get; set; }
+        public IEnumerable<Sala> Sele { get; set; }
+        public IEnumerable<Sjedalo> Sjedala { get; set; }
     }
 }

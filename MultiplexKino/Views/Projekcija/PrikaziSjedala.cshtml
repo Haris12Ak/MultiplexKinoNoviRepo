@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MultiplexKino.Models.Rezervacija.RezervacijaSjedalaVM>
+@{
+    ViewData["Title"] = "PrikaziSjedala";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PrikaziSjedala</h1>
+
+<div class="pageContainer">
+    @foreach (var item in Model)
+    {
+        <p style="color:white">
+            Sjedalo: @item.BrojSjedala
+        </p>
+    }
+</div>
+

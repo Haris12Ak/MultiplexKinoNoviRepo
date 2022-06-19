@@ -12,8 +12,8 @@ using MultiplexKino.Areas.Identity.Data;
 namespace MultiplexKino.Migrations
 {
     [DbContext(typeof(MultiplexKinoDbContext))]
-    [Migration("20220613163847_AddTabelRezervacija")]
-    partial class AddTabelRezervacija
+    [Migration("20220616165427_NovaTabelaSjedala")]
+    partial class NovaTabelaSjedala
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -432,6 +432,31 @@ namespace MultiplexKino.Migrations
                     b.ToTable("SeatsForHall");
                 });
 
+            modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Sjedala", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BrojSjedala")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsZauzeto")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SalaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
+
+                    b.ToTable("Sjedala");
+                });
+
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Zanr", b =>
                 {
                     b.Property<int>("Id")
@@ -659,6 +684,13 @@ namespace MultiplexKino.Migrations
                         .HasForeignKey("SeatsForHallId");
                 });
 
+            modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Sjedala", b =>
+                {
+                    b.HasOne("MultiplexKino.Areas.Identity.Data.EntityModels.Sala", null)
+                        .WithMany("Sjedala")
+                        .HasForeignKey("SalaId");
+                });
+
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Film", b =>
                 {
                     b.Navigation("Projekcije");
@@ -667,6 +699,8 @@ namespace MultiplexKino.Migrations
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Sala", b =>
                 {
                     b.Navigation("Projekcije");
+
+                    b.Navigation("Sjedala");
                 });
 
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.SeatsForHall", b =>

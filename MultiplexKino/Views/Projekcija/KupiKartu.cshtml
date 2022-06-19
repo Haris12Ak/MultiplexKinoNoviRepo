@@ -1,5 +1,4 @@
-﻿
-@model MultiplexKino.Models.Projekcija.ProjekcijaKupiKartuVM
+﻿@model MultiplexKino.Models.Projekcija.ProjekcijaKupiKartuVM
 
 @{
     ViewData["Title"] = $"Odabrali ste film: '{ Model.Film.Naslov}' ";
@@ -116,9 +115,20 @@
         <button class="buttonNazad">Nazad</button>
     </a>
 
-    <a asp-page="/CinemaHall/SeatSelection" asp-route-id="@Model.Film.Id" class="btn-select">Select</a>
+    <a asp-controller="Rezervacija" asp-action="Index" asp-route-id="@Model.Sala">
+        <button class="buttonRezervisi">Rezerviši</button>
+    </a>
 
-    @*<button class="buttonRezervisi">Rezerviši</button>*@
+    @*<a asp-action="Rezervisi" asp-controller="Rezervacija" asp-route-id="@Model.Film.Id"> Select </a>*@
+
+@*    <a asp-controller="Projekcija" asp-action="PrikaziSjedala" asp-route-id="@Model.Sala">
+        <button class="buttonRezervisi">Prikaz Sjedala</button>
+    </a>*@
+
+    @*<a asp-page="/CinemaHall/SeatSelection" asp-route-id="@Model.Film.Id" class="btn-select">Select</a>
+
+        @*<a asp-controller="CinemaHall"  asp-action="OnGetAsync" asp-route-id="@Model.Film.Id" class="btn-select">Select</a>*@
+
 </div>
 
 <script>

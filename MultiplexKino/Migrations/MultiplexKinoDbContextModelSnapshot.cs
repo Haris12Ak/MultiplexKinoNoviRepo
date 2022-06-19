@@ -430,6 +430,31 @@ namespace MultiplexKino.Migrations
                     b.ToTable("SeatsForHall");
                 });
 
+            modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Sjedalo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BrojSjedala")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsZauzeto")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SalaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
+
+                    b.ToTable("Sjedalo");
+                });
+
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Zanr", b =>
                 {
                     b.Property<int>("Id")
@@ -657,6 +682,13 @@ namespace MultiplexKino.Migrations
                         .HasForeignKey("SeatsForHallId");
                 });
 
+            modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Sjedalo", b =>
+                {
+                    b.HasOne("MultiplexKino.Areas.Identity.Data.EntityModels.Sala", null)
+                        .WithMany("Sjedalo")
+                        .HasForeignKey("SalaId");
+                });
+
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Film", b =>
                 {
                     b.Navigation("Projekcije");
@@ -665,6 +697,8 @@ namespace MultiplexKino.Migrations
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Sala", b =>
                 {
                     b.Navigation("Projekcije");
+
+                    b.Navigation("Sjedalo");
                 });
 
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.SeatsForHall", b =>

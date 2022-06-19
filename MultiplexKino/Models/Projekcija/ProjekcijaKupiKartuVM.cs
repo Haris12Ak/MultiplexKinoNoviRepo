@@ -1,4 +1,5 @@
-﻿using MultiplexKino.Models.Film;
+﻿using MultiplexKino.Areas.Identity.Data.EntityModels;
+using MultiplexKino.Models.Film;
 using System.ComponentModel;
 
 namespace MultiplexKino.Models.Projekcija
@@ -8,6 +9,8 @@ namespace MultiplexKino.Models.Projekcija
         public int Id { get; set; }
 
         public FilmPrikazVM Film { get; set; }
+
+        //public int SalaId { get; set; }
 
         public string Sala { get; set; }
 

@@ -11,6 +11,7 @@ namespace MultiplexKino.Models.Projekcija
 
         public int SalaId { get; set; }
 
+
         [DisplayName("Cijena (KM)")]
         [Required(ErrorMessage = "Polje je obavezno.")]
         [RegularExpression(@"[\d]{1,4}([.,][\d]{1,2})?", ErrorMessage = "Molimo unesite validnu cijenu.")]

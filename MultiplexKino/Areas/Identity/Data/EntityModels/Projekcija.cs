@@ -19,7 +19,8 @@
         public virtual Film Film { get; set; }
 
         public virtual Sala Sala { get; set; }
-        
+
+
         //public virtual ICollection<ProjekcijaRaspored> Rasporedi { get; set; }
 
     }

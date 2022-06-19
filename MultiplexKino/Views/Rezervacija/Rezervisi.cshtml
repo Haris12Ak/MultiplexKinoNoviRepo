@@ -1,0 +1,73 @@
+﻿@model MultiplexKino.Controllers.RezervacijaController
+
+<div class="container-main">
+    <form method="post">
+        <div class="Checking">
+            @foreach (var m in Model.MoviesForShowingData.Projekcije)
+            {
+                var counter = 0;
+                var counterV = 0;
+                var isSecondRow = true;
+                if (Model.MoviesId == @m.Film.Id)
+                {
+                    <div class="main-seat-class">
+                        <ul class="showcase">
+                            <li>
+                                <div class="seat"></div>
+                                <small>Available</small>
+                            </li>
+                            <li>
+                                <div class="seat-selected"></div>
+                                <small>Selected</small>
+                            </li>
+                            <li>
+                                <div class="seat-sold"></div>
+                                <small>Sold</small>
+                            </li>
+                        </ul>
+                        <div class="screen"></div>
+                    </div>
+                }
+                @foreach (var s in @m.Sala.Sjedalo)
+                {
+                    if (@s.IsZauzeto)
+                    {
+                        <div class="seat-sold">
+                            <label>
+                                <input type="checkbox" checked dispabled><span>@s.BrojSjedala</span>
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="asker">
+                            <label>
+                                <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@s.Id"><div class="seat-soledas">@s.BrojSjedala</div>
+                            </label>
+                        </div>
+                    }
+
+                    if (counterV == 10)
+                    {
+                        isSecondRow = true;
+                        counterV = 0;
+                        counter = 0;
+                    }
+
+                    counter++;
+                    counterV++;
+                    if (counter == 5 && isSecondRow)
+                    {
+                        isSecondRow = false;
+                        counter = 0;
+                        <div class="spacing-betwene"></div>
+                    }
+
+                    <div class="btn-submit-seat-food">
+                        <input type="submit" value="Rezervisi" class="btn-edit" id="Reserve">
+                    </div>
+                }
+            }
+        </div>
+    </form>
+</div>
