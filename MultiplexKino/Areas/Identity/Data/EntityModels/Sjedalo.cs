@@ -17,4 +17,9 @@ namespace MultiplexKino.Areas.Identity.Data.EntityModels
             return BrojSjedala.ToString();
         }
     }
+
+    public class SjedaloModel
+    {
+        public List<Sjedalo> Sjedala { get; set; }
+    }
 }

@@ -30,6 +30,8 @@ namespace MultiplexKino.Controllers
                 Include(x => x.Projekcije).
                 FirstOrDefault(x => x.Naziv == id);
 
+            SjedaloModel sjedala = new SjedaloModel();
+
             if (sala != null)
             {
                 return View(new RezervacijaUcitajVM
@@ -37,7 +39,7 @@ namespace MultiplexKino.Controllers
                     Id = sala.Id,
                     Naziv = sala.Naziv,
                     BrojSjedista = sala.BrojSjedista,
-                    Sjedala = sala.Sjedalo.ToList()
+                    Sjedala = sala.Sjedalo.ToList<Sjedalo>()
                 });
             }
             else
@@ -46,28 +48,12 @@ namespace MultiplexKino.Controllers
             }
 
         }
-        
-
-        public async Task Rezervisi(int? id)
-        {
-            MoviesForShowingData = new MoviesForShowingIndexModel();
-
-            MoviesForShowingData.Projekcije = await _db.Projekcija
-                .Include(x => x.Film)
-                .Include(x => x.Sala)
-                .ThenInclude(x => x.Sjedalo)
-                .ToListAsync();
-
-
-            if (id != null)
-                MoviesId = (int)id;
-
-        }
 
         [BindProperty]
-        public List<int> SeatsChecked { get; set; }
+        public List<int> SeatsChecked { get; set; } = new List<int>();
 
-        public async Task<IActionResult> SjedaloIsZauzeto()
+        [HttpPost]
+        public async Task<IActionResult> Index()
         {
             foreach (var s in SeatsChecked)
             {
@@ -80,10 +66,25 @@ namespace MultiplexKino.Controllers
                 _db.Sjedalo.Update(seat);
                 await _db.SaveChangesAsync();
             }
+
             SeatsChecked.Clear();
-            return RedirectToAction("Rezervisi", MoviesForShowingData);
+            return RedirectToAction("Index");
         }
 
+        //public async Task Rezervisi(int? id)
+        //{
+        //    MoviesForShowingData = new MoviesForShowingIndexModel();
 
+        //    MoviesForShowingData.Projekcije = await _db.Projekcija
+        //        .Include(x => x.Film)
+        //        .Include(x => x.Sala)
+        //        .ThenInclude(x => x.Sjedalo)
+        //        .ToListAsync();
+
+
+        //    if (id != null)
+        //        MoviesId = (int)id;
+
+        //}
     }
 }

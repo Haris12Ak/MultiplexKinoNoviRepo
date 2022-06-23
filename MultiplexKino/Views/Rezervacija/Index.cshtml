@@ -1,105 +1,57 @@
 ﻿@model MultiplexKino.Models.Rezervacija.RezervacijaUcitajVM
-
-@{
+@*
+    @{
     ViewData["Title"] = Model.Naziv;
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    }*@
 
-@*<div class="pageContainer">*@
+
 <form method="post">
-    <div class="Checking">
-        <div>
-            <p style="color:white">
-                Id sale: @Model.Id <br />
-                Naziv sale: @Model.Naziv <br />
-                Broj sjedala: @Model.BrojSjedista
-            </p>
-        </div>
-
-        @foreach (var s in Model.Sjedala)
-        {
-            var counter = 0;
-            var counterV = 0;
-            var isSecondRow = true;
-            @if (@s.IsZauzeto)
-            {
-                <div class="seat-sold">
-                    <label>
-                        <input type="checkbox" checked dispabled><span>@s.BrojSjedala</span>
-                    </label>
-                </div>
-            }
-            else
-            {
-                <div class="asker">
-                    <label>
-                        <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@s.Id"> <div class="seat-soledas">@s.BrojSjedala</div>
-                    </label>
-                </div>
-            }
-            if (counterV == 10)
-            {
-                isSecondRow = true;
-                counterV = 0;
-                counter = 0;
-            }
-
-            counter++;
-            counterV++;
-            if (counter == 5 && isSecondRow)
-            {
-                isSecondRow = false;
-                counter = 0;
-                <div class="spacing-betwene"></div>
-            }
-
-        }
-        @*            <a asp-action="SjedaloIsZauzeto">
-            <div class="btn-submit-seat-food">
-            <input type="submit" value="Rezervisi" class="btn-edit" id="Reserve">
-            </div>
-            </a>*@
-        <a asp-action="SjedaloIsZauzeto" class="btn btn-edit"></a>
+    <div class="main-seat-class">
+        <ul class="showcase">
+            <li>
+                <div class="seat"></div>
+                <small>Available</small>
+            </li>
+            <li>
+                <div class="seat-selected"></div>
+                <small>Selected</small>
+            </li>
+            <li>
+                <div class="seat-sold"></div>
+                <small>Sold</small>
+            </li>
+        </ul>
     </div>
+    <div class="Checking">
+        <table>
+            @for (int i = 0; i < @Model.Sjedala.Count; i++)
+            {
+                @if (i % 10 == 0)
+                {
+                    @i
+                    <tr></tr>
+                }
+                <td>
+                    @if (@Model.Sjedala[i].IsZauzeto)
+                    {
+                        <div class="seat-sold">
+                            <label>
+                                <input type="checkbox" checked dispabled><span>@Model.Sjedala[i].BrojSjedala</span>
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="asker">
+                            <label>
+                                <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@Model.Sjedala[i].Id"><div class="seat-soledas">@Model.Sjedala[i].BrojSjedala</div>
+                            </label>
+                        </div>
+                    }
+                </td>
+            }
+        </table>
+    </div>
+    <input type="submit" value="Submit" />
 </form>
-
-
-@*<script>
-    if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
-    } else {
-    ready()
-    }
-
-    function ready(){
-    var quantityInputs = document.getElementsByClassName("quantity-input")
-    for (var i = 0; i < quantityInputs.length; i++) {
-    var input = quantityInputs[i]
-    input.addEventListener("change", quantityChanged)
-    }
-    }
-    function quantityChanged(event) {
-    var input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-    input.value = 0
-    }
-    updateCartTotal()
-    }
-
-    function updateCartTotal(){
-    var foodContainer = document.getElementsByClassName("food-container")[0];
-    var foodCard = foodContainer.getElementsByClassName("food-card");
-    var total = 0;
-    for(var i=0;i<foodCard.length;i++)
-    {
-    var foodCards = foodCard[i];
-    var priceElement = foodCards.getElementsByClassName("cart-item-price")[0];
-    var quantityElement = foodCards.getElementsByClassName("quantity-input")[0];
-    var price = parseFloat(priceElement.innerText.replace("€", ""));
-    var quantity = quantityElement.value;
-    total = total + (price * quantity);
-    }
-    total = Math.round(total * 100) / 100
-    document.getElementsByClassName("cart-total-price")[0].innerText =  total + '€'
-    }
-    </script>*@
