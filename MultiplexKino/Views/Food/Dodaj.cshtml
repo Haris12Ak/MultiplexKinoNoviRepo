@@ -1,0 +1,52 @@
+﻿@model MultiplexKino.Models.FoodModels.FoodSnimiVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    float? price = null;
+
+    if (Model != null)
+    {
+        price = Model.Price;
+    }
+}
+
+<div class="pageContainer">
+    <h4 style="color:whitesmoke">Dodavanje artikla</h4>
+    <hr style="color:whitesmoke" />
+    <div class="row">
+        <div class="col-md-4">
+            <form class="formFilm" asp-action="Dodaj" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Naziv artikla</label>
+                    <input style="width:50%" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantity" class="control-label">Quantity</label>
+                    <input style="width:30%" asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label">Cijena</label>
+                    <input style="width:30%" id="Price" name="Price" value="@price"  class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Image</label><br />
+                    <input type="file" name="file" id="file" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="btnListaDodaj">
+        <a asp-action="Index">Nazad na listu</a>
+    </button>
+
+</div>

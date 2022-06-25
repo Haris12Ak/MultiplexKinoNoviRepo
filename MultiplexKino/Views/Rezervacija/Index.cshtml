@@ -1,57 +1,148 @@
 ﻿@model MultiplexKino.Models.Rezervacija.RezervacijaUcitajVM
+
 @*
     @{
     ViewData["Title"] = Model.Naziv;
     Layout = "~/Views/Shared/_Layout.cshtml";
     }*@
 
-
-<form method="post">
-    <div class="main-seat-class">
-        <ul class="showcase">
-            <li>
-                <div class="seat"></div>
-                <small>Available</small>
-            </li>
-            <li>
-                <div class="seat-selected"></div>
-                <small>Selected</small>
-            </li>
-            <li>
-                <div class="seat-sold"></div>
-                <small>Sold</small>
-            </li>
-        </ul>
-    </div>
-    <div class="Checking">
-        <table>
-            @for (int i = 0; i < @Model.Sjedala.Count; i++)
-            {
-                @if (i % 10 == 0)
+<div class="pageContainer">
+    <form method="post">
+        <div class="main-seat-class">
+            <ul class="showcase">
+                <li>
+                    <div class="seat"></div>
+                    <small>Available</small>
+                </li>
+                <li>
+                    <div class="seat-selected"></div>
+                    <small>Selected</small>
+                </li>
+                <li>
+                    <div class="seat-sold"></div>
+                    <small>Sold</small>
+                </li>
+            </ul>
+        </div>
+        <div class="Checking">
+            <table>
+                @for (int i = 0; i < @Model.Sjedala.Count; i++)
                 {
-                    @i
-                    <tr></tr>
+                    @if (i % 10 == 0)
+                    {
+                        @i
+                        <tr></tr>
+                    }
+                    <td>
+                        @if (@Model.Sjedala[i].IsZauzeto)
+                        {
+                            <div class="seat-sold">
+                                <label>
+                                    <input type="checkbox" checked dispabled><span>@Model.Sjedala[i].BrojSjedala</span>
+                                </label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="asker">
+                                <label>
+                                    <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@Model.Sjedala[i].Id"><div class="seat-soledas">@Model.Sjedala[i].BrojSjedala</div>
+                                </label>
+                            </div>
+                        }
+                    </td>
                 }
-                <td>
-                    @if (@Model.Sjedala[i].IsZauzeto)
-                    {
-                        <div class="seat-sold">
-                            <label>
-                                <input type="checkbox" checked dispabled><span>@Model.Sjedala[i].BrojSjedala</span>
-                            </label>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="asker">
-                            <label>
-                                <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@Model.Sjedala[i].Id"><div class="seat-soledas">@Model.Sjedala[i].BrojSjedala</div>
-                            </label>
-                        </div>
-                    }
-                </td>
+            </table>
+        </div>
+        <input type="submit" value="Rezerviši" />
+    </form>
+
+    <div class="food-container">
+        <span>Food chose(optional)</span>
+        @foreach (var s in Model.Foods)
+        {
+            @if (s.Name == "Coca-Cola")
+            {
+                <img src="~/img/CocaCola_image.png" style="width:100px; height:120px" />
             }
-        </table>
+            else if (s.Name == "Pepsi")
+            {
+                <img src="~/img/pepsi_image.png" style="width:100px; height:120px" />
+
+            }
+            else if (s.Name == "Pop-Corn")
+            {
+                <img src="~/img/popCorn_image.jpg" style="width:100px; height:120px" />
+
+            }
+            else if (s.Name == "Snickers")
+            {
+                <img src="~/img/snickers_image.png" style="width:100px; height:120px" />
+
+            }
+            else if (s.Name == "Chips")
+            {
+                <img src="~/img/Chips_image.png" style="width:100px; height:120px" />
+
+            }
+            else
+            {
+                <img src="~/img/no-movie-posters.jpg" style="width:100px; height:120px" />
+            }
+            <div class="food-card">
+                <span style="color:white">@s.Name</span>
+                <span class="cart-item-price" style="color:white">@s.Price</span><span>€</span>
+                <div class="button-sub-add">
+                    <button class="lower">-</button>
+                    <input class="quantity-input" type="number" min="0" max="50" value="0" style="width: 5%">
+                    <button class="up">+</button>
+                </div>
+            </div>
+        }
     </div>
-    <input type="submit" value="Submit" />
-</form>
+    <div class="final-info">
+        <div id="final-price" style="color:white">UKUPNA CIJENA</div>
+        <span class="cart-total-price" style="color:white">0€</span>
+    </div>
+
+</div>
+
+<script>
+    if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+    } else {
+    ready()
+    }
+
+    function ready(){
+    var quantityInputs = document.getElementsByClassName("quantity-input")
+    for (var i = 0; i < quantityInputs.length; i++) {
+    var input = quantityInputs[i]
+    input.addEventListener("change", quantityChanged)
+    }
+    }
+    function quantityChanged(event) {
+    var input = event.target
+    if (isNaN(input.value) || input.value <= 0) {
+    input.value = 0
+    }
+    updateCartTotal()
+    }
+
+    function updateCartTotal(){
+    var foodContainer = document.getElementsByClassName("food-container")[0];
+    var foodCard = foodContainer.getElementsByClassName("food-card");
+    var total = 0;
+    for(var i=0;i<foodCard.length;i++)
+    {
+    var foodCards = foodCard[i];
+    var priceElement = foodCards.getElementsByClassName("cart-item-price")[0];
+    var quantityElement = foodCards.getElementsByClassName("quantity-input")[0];
+    var price = parseFloat(priceElement.innerText.replace("€", ""));
+    var quantity = quantityElement.value;
+    total = total + (price * quantity);
+    }
+    total = Math.round(total * 100) / 100
+    document.getElementsByClassName("cart-total-price")[0].innerText =  total + '€'
+    }
+</script>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MultiplexKino.Areas.Identity.Data;
 
@@ -11,9 +12,10 @@ using MultiplexKino.Areas.Identity.Data;
 namespace MultiplexKino.Migrations
 {
     [DbContext(typeof(MultiplexKinoDbContext))]
-    partial class MultiplexKinoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220624135111_DeleteTabelFood")]
+    partial class DeleteTabelFood
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,33 +254,6 @@ namespace MultiplexKino.Migrations
                     b.HasIndex("ZanrId");
 
                     b.ToTable("Film");
-                });
-
-            modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Food", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Food");
                 });
 
             modelBuilder.Entity("MultiplexKino.Areas.Identity.Data.EntityModels.Informacije", b =>

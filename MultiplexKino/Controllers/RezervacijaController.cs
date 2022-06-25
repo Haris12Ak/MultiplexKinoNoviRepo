@@ -39,7 +39,8 @@ namespace MultiplexKino.Controllers
                     Id = sala.Id,
                     Naziv = sala.Naziv,
                     BrojSjedista = sala.BrojSjedista,
-                    Sjedala = sala.Sjedalo.ToList<Sjedalo>()
+                    Sjedala = sala.Sjedalo.ToList<Sjedalo>(),
+                    Foods = _db.Food.ToList()
                 });
             }
             else
