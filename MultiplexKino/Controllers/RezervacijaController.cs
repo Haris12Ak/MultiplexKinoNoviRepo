@@ -56,20 +56,28 @@ namespace MultiplexKino.Controllers
         [HttpPost]
         public async Task<IActionResult> Index()
         {
-            foreach (var s in SeatsChecked)
+            if (SeatsChecked.Count() != 0)
             {
-                var seat = await _db.Sjedalo.FindAsync(s);
-                if (seat == null)
-                    return NotFound();
-                if (!seat.IsZauzeto)
-                    seat.IsZauzeto = true;
+                foreach (var s in SeatsChecked)
+                {
+                    var seat = await _db.Sjedalo.FindAsync(s);
+                    if (seat == null)
+                        return NotFound();
+                    if (!seat.IsZauzeto)
+                        seat.IsZauzeto = true;
 
-                _db.Sjedalo.Update(seat);
-                await _db.SaveChangesAsync();
+                    _db.Sjedalo.Update(seat);
+                    await _db.SaveChangesAsync();
+                }
+                SeatsChecked.Clear();
+                return RedirectToAction("Dodaj", "Naplata");
+            }
+            else
+            {
+                ViewBag.Message = string.Format("Rezervaciju mije moguce izvrsiti! Niste odabrali sjedala!");
+                return View("Index");
             }
 
-            SeatsChecked.Clear();
-            return RedirectToAction("Index");
         }
 
         //public async Task Rezervisi(int? id)

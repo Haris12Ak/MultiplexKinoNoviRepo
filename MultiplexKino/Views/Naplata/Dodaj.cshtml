@@ -1,0 +1,69 @@
+﻿@model MultiplexKino.Models.Naplata.NaplataSnimiVM
+
+
+<div class="containeer">
+    <div class="title">Naplata</div>
+    <div class="content">
+        <form asp-action="Dodaj" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="user-details">
+                <div class="input-box">
+                    <span asp-for="Ime" class="details">Ime</span>
+                    <input asp-for="Ime" placeholder="Unesite ime" required/>
+                    <span asp-validation-for="Ime" class="text-danger"></span>
+                </div>
+
+                <div class="input-box">
+                    <span asp-for="Ime" class="details">Prezime</span>
+                    <input asp-for="Prezime" placeholder="Unesite prezime" required />
+                    <span asp-validation-for="Prezime" class="text-danger"></span>
+                </div>
+
+                <div class="input-box">
+                    <span asp-for="Ime" class="details">Broj lične karte</span>
+                    <input asp-for="BrojLicneKarte" placeholder="Unesite broj licne" required/>
+                    <span asp-validation-for="BrojLicneKarte" class="text-danger"></span>
+                </div>
+
+                <div class="input-box">
+                    <span asp-for="Ime" class="details">Broj karata</span>
+                    <input asp-for="BrojKarata" placeholder="Unesite broj karata" required />
+                    <span asp-validation-for="BrojKarata" class="text-danger"></span>
+                </div>
+
+                <div class="input-box">
+                    <span asp-for="Ime" class="details">Ime i prezime na kartici</span>
+                    <input asp-for="ImePrezimeNaKartici" placeholder="Unesite ime/prezime kartice" required/>
+                    <span asp-validation-for="ImePrezimeNaKartici" class="text-danger"></span>
+                </div>
+
+                <div class="input-box">
+                    <span asp-for="Ime" class="details">Racun</span>
+                    <input asp-for="Racun" placeholder="Unesite broj racuna" required/>
+                    <span asp-validation-for="Racun" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="placanje-details">
+                <input type="radio" name="placanje" id="dot-1" />
+                <input type="radio" name="placanje" id="dot-2" />
+                <span class="placanje-title">Nacin placanja</span>
+                <div class="category">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="placanje">Kreditna kartica</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="placanje">Pay Pal</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="buttonNaplata">
+                <input type="submit" value="Završi narudžbu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

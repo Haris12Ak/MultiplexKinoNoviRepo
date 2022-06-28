@@ -7,113 +7,123 @@
     }*@
 
 <div class="pageRezervacija">
-    <div class="Checking">
-        <form method="post">
-            <div class="main-seat-class">
-                <ul class="showcase">
-                    <li>
-                        <div class="seat"></div>
-                        <small>Available</small>
-                    </li>
-                    <li>
-                        <div class="seat-selected"></div>
-                        <small>Selected</small>
-                    </li>
-                    <li>
-                        <div class="seat-sold"></div>
-                        <small>Sold</small>
-                    </li>
-                </ul>
-            </div>
-            <table class="tabelaSjedala">
-                @for (int i = 0; i < @Model.Sjedala.Count; i++)
-                {
-                    @if (i % 15 == 0)
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+            alert("@ViewBag.Message");
+            };
+        </script>
+    }
+    else
+    {
+        <div class="Checking">
+            <form method="post">
+                <div class="main-seat-class">
+                    <ul class="showcase">
+                        <li>
+                            <div class="seat"></div>
+                            <small>Available</small>
+                        </li>
+                        <li>
+                            <div class="seat-selected"></div>
+                            <small>Selected</small>
+                        </li>
+                        <li>
+                            <div class="seat-sold"></div>
+                            <small>Sold</small>
+                        </li>
+                    </ul>
+                </div>
+                <table class="tabelaSjedala">
+                    @for (int i = 0; i < @Model.Sjedala.Count; i++)
                     {
-                        <tr></tr>
-                    }
-                    <td>
-                        @if (@Model.Sjedala[i].IsZauzeto)
+                        @if (i % 15 == 0)
                         {
-                            <div class="seat-sold">
-                                <label>
-                                    <input type="checkbox" checked dispabled><span>@Model.Sjedala[i].BrojSjedala</span>
-                                </label>
-                            </div>
+                            <tr></tr>
+                        }
+                        <td>
+                            @if (@Model.Sjedala[i].IsZauzeto)
+                            {
+                                <div class="seat-sold">
+                                    <label>
+                                        <input type="checkbox" checked dispabled><span>@Model.Sjedala[i].BrojSjedala</span>
+                                    </label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="asker">
+                                    <label>
+                                        <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@Model.Sjedala[i].Id"><div class="seat-soledas">@Model.Sjedala[i].BrojSjedala</div>
+                                    </label>
+                                </div>
+                            }
+                        </td>
+                    }
+                </table>
+                <div class="final-info">
+                    <div id="final-price" style="color:white; font-size:1.6em; font-weight:bold">UKUPNA CIJENA</div>
+                    <span class="cart-total-price" style="color:white; font-size:1.2em">0€</span>
+                </div>
+                <div style="display:flex;">
+                    <input class="btnSjedala" type="submit" value="Rezerviši" />
+
+                    <a asp-controller="Projekcija" asp-action="UcitajSveProjekcije">
+                        <input class="btnOtkaziRezervaciju" value="Odustani" />
+                    </a>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="food-container">
+            <h4 class="IzborArtikla">Izaberite hranu/piće</h4>
+            @*<span>Food chose(optional)</span>*@
+            <div class="food-card">
+                @foreach (var s in Model.Foods)
+                {
+                    <div class="artikli">
+                        @if (s.Name == "Coca-Cola")
+                        {
+                            <img src="~/img/CocaCola_image.png" style="width:200px; height:220px" />
+                        }
+                        else if (s.Name == "Pepsi")
+                        {
+                            <img src="~/img/pepsi_image.png" style="width:200px; height:220px" />
+
+                        }
+                        else if (s.Name == "Pop-Corn")
+                        {
+                            <img src="~/img/popCorn_image.jpg" style="width:200px; height:220px" />
+
+                        }
+                        else if (s.Name == "Snickers")
+                        {
+                            <img src="~/img/snickers_image.png" style="width:200px; height:220px" />
+
+                        }
+                        else if (s.Name == "Chips")
+                        {
+                            <img src="~/img/Chips_image.png" style="width:200px; height:220px" />
+
                         }
                         else
                         {
-                            <div class="asker">
-                                <label>
-                                    <input type="checkbox" name="SeatsChecked" id="seat-checked" value="@Model.Sjedala[i].Id"><div class="seat-soledas">@Model.Sjedala[i].BrojSjedala</div>
-                                </label>
-                            </div>
+                            <img src="~/img/no-movie-posters.jpg" style="width:200px; height:220px" />
                         }
-                    </td>
-                }
-            </table>
-            <div class="final-info">
-                <div id="final-price" style="color:white; font-size:1.6em; font-weight:bold">UKUPNA CIJENA</div>
-                <span class="cart-total-price" style="color:white; font-size:1.2em">0€</span>
-            </div>
-            <div style="display:flex;">
-                <input class="btnSjedala" type="submit" value="Rezerviši" />
-
-                <a asp-controller="Projekcija" asp-action="UcitajSveProjekcije" >
-                    <input class="btnOtkaziRezervaciju" value="Odustani" />
-                </a>
-            </div>
-        </form>
-    </div>
-
-    <div class="food-container">
-        <h4 class="IzborArtikla">Izaberite hranu/piće</h4>
-        @*<span>Food chose(optional)</span>*@
-        <div class="food-card">
-            @foreach (var s in Model.Foods)
-            {
-                <div class="artikli">
-                    @if (s.Name == "Coca-Cola")
-                    {
-                        <img src="~/img/CocaCola_image.png" style="width:200px; height:220px" />
-                    }
-                    else if (s.Name == "Pepsi")
-                    {
-                        <img src="~/img/pepsi_image.png" style="width:200px; height:220px" />
-
-                    }
-                    else if (s.Name == "Pop-Corn")
-                    {
-                        <img src="~/img/popCorn_image.jpg" style="width:200px; height:220px" />
-
-                    }
-                    else if (s.Name == "Snickers")
-                    {
-                        <img src="~/img/snickers_image.png" style="width:200px; height:220px" />
-
-                    }
-                    else if (s.Name == "Chips")
-                    {
-                        <img src="~/img/Chips_image.png" style="width:200px; height:220px" />
-
-                    }
-                    else
-                    {
-                        <img src="~/img/no-movie-posters.jpg" style="width:200px; height:220px" />
-                    }
-                    <p style="color:white; padding-top:10px; font-size:2em; font-weight:bold">@s.Name</p>
-                    <p class="cart-item-price" style="color:white; font-size:1.5em">@s.Price €</p>
-                    <div class="button-sub-add">
-                        <input class="quantity-input" type="number">
+                        <p style="color:white; padding-top:10px; font-size:2em; font-weight:bold">@s.Name</p>
+                        <p class="cart-item-price" style="color:white; font-size:1.5em">@s.Price €</p>
+                        <div class="button-sub-add">
+                            <input class="quantity-input" type="number">
+                        </div>
                     </div>
-                </div>
-                <hr class="linijaArtikal" />
-            }
+                    <hr class="linijaArtikal" />
+                }
+            </div>
         </div>
-    </div>
+    }
 </div>
-
-
 
 <script>
     if (document.readyState == 'loading') {

@@ -5,35 +5,40 @@
     ViewData["Title"] = "Log in";
 }
 
-<div class="row">
-    <div class="col-md-4" style="margin-left:auto; margin-right:auto; margin-top:200px">
+<div class="loginContainer">
+    <div class="loginTitle">Login Form</div>
+    <div class="loginContent">
         <section>
             <form class="formLogin" id="account" method="post">
-                <h4 style="color:whitesmoke; text-align: center">Use a local account to log in.</h4>
-                <hr style="color:whitesmoke" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating">
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div>
-                    <div class="checkbox">
-                        <label style="color:white; margin-left:45px" asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+                <div class="login-details">
+                    <div class="input-login">
+                        <label asp-for="Input.Email" class="loginDetails"></label>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="input-login">
+                        <label asp-for="Input.Password" class="loginDetails"></label>
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe" class="form-label">
+                                <input class="form-check-input" asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
                     </div>
                 </div>
+
                 <div>
-                    <button id="login-submit" type="submit" class="w-15 btn btn-primary" style="margin-left:130px; margin-top:10px; margin-bottom:10px">Log in</button>
+                    <button id="login-submit" type="submit" class="w-30 btn btn-primary" style="margin-left:100px; margin-top:10px; margin-bottom:10px">Log in</button>
                 </div>
-                <div style="margin-left:20px">
+                <hr style="color:black"/>
+                <div style="">
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
@@ -47,37 +52,38 @@
             </form>
         </section>
     </div>
+</div>
 
-    @* <div class="col-md-6 col-md-offset-2">
-        <section>
-        <h3>Use another service to log in.</h3>
-        <hr />
-        @{
-        if ((Model.ExternalLogins?.Count ?? 0) == 0)
-        {
-        <div>
-        <p>
-        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-        about setting up this ASP.NET application to support logging in via external services</a>.
-        </p>
-        </div>
-        }
-        else
-        {
-        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-        <div>
-        <p>
-        @foreach (var provider in Model.ExternalLogins)
-        {
-        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-        }
-        </p>
-        </div>
-        </form>
-        }
-        }
-        </section>
-        </div>*@
+@* <div class="col-md-6 col-md-offset-2">
+    <section>
+    <h3>Use another service to log in.</h3>
+    <hr />
+    @{
+    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+    {
+    <div>
+    <p>
+    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+    about setting up this ASP.NET application to support logging in via external services</a>.
+    </p>
+    </div>
+    }
+    else
+    {
+    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+    <div>
+    <p>
+    @foreach (var provider in Model.ExternalLogins)
+    {
+    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+    }
+    </p>
+    </div>
+    </form>
+    }
+    }
+    </section>
+    </div>*@
 </div>
 
 @section Scripts {

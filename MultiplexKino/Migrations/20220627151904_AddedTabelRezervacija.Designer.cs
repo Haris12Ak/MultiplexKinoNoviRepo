@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MultiplexKino.Areas.Identity.Data;
 
@@ -11,9 +12,10 @@ using MultiplexKino.Areas.Identity.Data;
 namespace MultiplexKino.Migrations
 {
     [DbContext(typeof(MultiplexKinoDbContext))]
-    partial class MultiplexKinoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627151904_AddedTabelRezervacija")]
+    partial class AddedTabelRezervacija
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

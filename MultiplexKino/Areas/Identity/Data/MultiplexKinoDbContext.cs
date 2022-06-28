@@ -37,7 +37,7 @@ public class MultiplexKinoDbContext : IdentityDbContext<MultiplexKinoUser>
     public DbSet<Seats> Seats { get; set; }
     public DbSet<Food> Food { get; set; }
     public DbSet<Sjedalo> Sjedalo { get; set; }
-
+    public DbSet<Rezervacija> Rezervacija { get; set; }
 }
 
 
