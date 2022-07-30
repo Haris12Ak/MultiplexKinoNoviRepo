@@ -43,6 +43,7 @@ namespace MultiplexKino.Controllers
                 });
 
                 _db.SaveChanges();
+                TempData["AlertMessage"] = "Rezervacija uspješna...!";
             }
             catch (Exception ex)
             {

@@ -279,7 +279,491 @@ form .input-login label.loginDetails {
         border-color: #9b59b6;
     }
 
+/*/////////////////////////////////////////////////// FILM FORM ////////////////////////////////////////*/
+
+.containerFilm {
+    width: 100%;
+    height: 28%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 90px;*/
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+    .containerFilm::-webkit-scrollbar {
+        width: 0.4em;
+        background-color: grey;
+    }
+
+    .containerFilm .titleFilm {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+        .containerFilm .titleFilm::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 1480px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+/*.contentFilm{
+    width: 50%;
+    background-color: black;
+}*/
+
+.contentFilm form .user-detailsFilm {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+    margin: 20px 0 12px 20px;
+}
+
+form .user-detailsFilm .input-boxFilm {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+form .input-boxFilm label.detailsFilm {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-detailsFilm .input-boxFilm input {
+    height: 35px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsFilm .input-boxFilm select {
+    height: 40px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsFilm .input-boxFilm textarea {
+    height: 90px;
+    width: 90%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsFilm .input-boxFilm input:focus,
+.user-detailsFilm input-boxFilm input:valid {
+    border-color: #9b59b6;
+}
+
+
+.containerUrediFilm {
+    width: 100%;
+    height: 28%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 90px;*/
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+    .containerUrediFilm::-webkit-scrollbar {
+        width: 0.4em;
+        background-color: grey;
+    }
+
+    .containerUrediFilm .titleUrediFilm {
+        font-size: 28px;
+        font-weight: 700;
+        position: relative;
+    }
+
+        .containerUrediFilm .titleUrediFilm::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 590px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+.contentUrediFilm form .user-detailsUrediFilm {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+    margin: 20px 0 12px 20px;
+}
+
+form .user-detailsUrediFilm .input-boxUrediFilm {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+form .input-boxUrediFilm label.detailsUrediFilm {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-detailsUrediFilm .input-boxUrediFilm input {
+    height: 35px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsUrediFilm .input-boxUrediFilm select {
+    height: 40px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsUrediFilm .input-boxUrediFilm textarea {
+    height: 90px;
+    width: 90%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsUrediFilm .input-boxUrediFilm input:focus,
+.user-detailsUrediFilm input-boxUrediFilm input:valid {
+    border-color: #9b59b6;
+}
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*//////////////////////////////////////////////  Projekcija Form  ///////////////////////////////////////////////*/
+
+.containerProjekcija {
+    width: 100%;
+    height: 28%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 90px;*/
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+    .containerProjekcija::-webkit-scrollbar {
+        width: 0.4em;
+        background-color: grey;
+    }
+
+    .containerProjekcija .titleProjekcija {
+        font-size: 35px;
+        font-weight: 700;
+        position: relative;
+    }
+
+        .containerProjekcija .titleProjekcija::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 270px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+
+.contentProjekcija form .user-detailsProjekcija {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+    margin: 20px 0 12px 20px;
+}
+
+form .user-detailsProjekcija .input-boxProjekcija {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+form .input-boxProjekcija label.detailsProjekcija {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-detailsProjekcija .input-boxProjekcija input {
+    height: 35px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsProjekcija .input-boxProjekcija select {
+    height: 40px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsProjekcija .input-boxProjekcija textarea {
+    height: 90px;
+    width: 90%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsProjekcija .input-boxProjekcija input:focus,
+.user-detailsProjekcija input-boxProjekcija input:valid {
+    border-color: #9b59b6;
+}
+
+.containerUrediProjekciju {
+    width: 100%;
+    height: 28%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 90px;*/
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+    .containerUrediProjekciju::-webkit-scrollbar {
+        width: 0.4em;
+        background-color: grey;
+    }
+
+    .containerUrediProjekciju .titleUrediProjekciju {
+        font-size: 28px;
+        font-weight: 700;
+        position: relative;
+    }
+
+        .containerUrediProjekciju .titleUrediProjekciju::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 590px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+.contentUrediProjekciju form .user-detailsUrediProjekciju {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+    margin: 20px 0 12px 20px;
+}
+
+form .user-detailsUrediProjekciju .input-boxUrediProjekciju {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+form .input-boxUrediProjekciju label.detailsUrediProjekciju {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-detailsUrediProjekciju .input-boxUrediProjekciju input {
+    height: 35px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsUrediProjekciju .input-boxUrediProjekciju select {
+    height: 40px;
+    width: 70%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsUrediProjekciju .input-boxUrediProjekciju textarea {
+    height: 90px;
+    width: 90%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsUrediProjekciju .input-boxUrediProjekciju input:focus,
+.user-detailsUrediProjekciju input-boxUrediProjekciju input:valid {
+    border-color: #9b59b6;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*////////////////////////////////////////////////////////  Added Information ///////////////////////////////////////*/
+
+.containerInformacija {
+    width: 85%;
+    height: 28%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 90px;*/
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+    .containerInformacija::-webkit-scrollbar {
+        width: 0.4em;
+        background-color: grey;
+    }
+
+    .containerInformacija .titleInformacija {
+        font-size: 35px;
+        font-weight: 700;
+        position: relative;
+    }
+
+        .containerInformacija .titleInformacija::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 370px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+.contetntInformacija form .user-detailsInformacija {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-between;*/
+    margin: 35px 0 12px 20px;
+}
+
+form .user-detailsInformacija .input-boxInformacija {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+form .input-boxInformacija label.detailsInformacija {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.user-detailsInformacija .input-boxInformacija input {
+    height: 45px;
+    width: 90%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsInformacija .input-boxInformacija textarea {
+    height: 350px;
+    width: 190%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-detailsInformacija .input-boxInformacija input:focus,
+.user-detailsInformacija input-boxInformacija input:valid {
+    border-color: #9b59b6;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
 /*//////////////////////////////   NAPLATA    ////////////////////////////////////////////////////////////////*/
+
+
 .containeer {
     width: 80%;
     margin-left: auto;
@@ -841,15 +1325,18 @@ table {
         background-color: indianred;
     }
 
-.btnListaDodaj {
-    margin-top: 20px;
-    margin-left: 50px;
+/*.btnProjekcijaDodaj {
+    width: 130px;
+    height: 40px;
+    margin-top: -40px;
+    margin-left: 80px;
     padding: 9px 25px;
     background-color: rgba(0,136,169,1);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
+    border: none;*/
+/*    border-radius: 50px;*/
+/*cursor: pointer;
     transition: all 0.3s ease 0s;
+    position: absolute;
 }
 
     .btnListaDodaj a {
@@ -859,7 +1346,7 @@ table {
 
     .btnListaDodaj:hover {
         background-color: indianred;
-    }
+    }*/
 
 .btnInformacijaPrikaz {
     margin-top: 30px;

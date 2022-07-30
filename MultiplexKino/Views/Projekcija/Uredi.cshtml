@@ -9,49 +9,54 @@
 
 }
 
-@*<div class="pageContainer">*@
-    <h1 style="color:whitesmoke">Uredi Projekciju</h1>
-    <hr style="color:whitesmoke"/>
-    <div class="row">
-        <div class="col-md-4">
-            <form class="formUrediProjekciju" asp-action="Uredi" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" name="Id" value="@Model.Id" />
-                <div class="form-group">
-                    <label asp-for="FilmId" class="control-label"></label>
+<div class="containerUrediProjekciju">
+    <div class="titleUrediProjekciju">Uredi Projekciju</div>
+    <div class="contentUrediProjekciju">
+        <form class="" asp-action="Uredi" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <div class="user-detailsUrediProjekciju">
+                <div class="input-boxUrediProjekciju">
+                    <label asp-for="FilmId" class="detailsUrediProjekciju">Naziv Filma</label>
                     <select asp-for="FilmId" asp-items="film" class="form-control"></select>
                     <span asp-validation-for="FilmId" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="SalaId" class="control-label"></label>
-                    <select asp-for="SalaId" asp-items="sala" class="form-control"></select>
-                    <span asp-validation-for="SalaId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Cijena" class="control-label">Trajanje (min)</label>
-                    <input asp-for="Cijena" class="form-control" />
-                    <span asp-validation-for="Cijena" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="VrijediOd" class="control-label">Godina snimanja</label>
+                <div class="input-boxUrediProjekciju">
+                    <label asp-for="VrijediOd" class="detailsUrediProjekciju">Vrijedi Od:</label>
                     <input asp-for="VrijediOd" class="form-control" />
                     <span asp-validation-for="VrijediOd" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="VrijediDo" class="control-label"></label>
+                <div class="input-boxUrediProjekciju">
+                    <label asp-for="SalaId" class="detailsUrediProjekciju">Sala</label>
+                    <select asp-for="SalaId" asp-items="sala" class="form-control"></select>
+                    <span asp-validation-for="SalaId" class="text-danger"></span>
+                </div>
+                <div class="input-boxUrediProjekciju">
+                    <label asp-for="VrijediDo" class="detailsUrediProjekciju">Vrijedi Do:</label>
                     <input asp-for="VrijediDo" class="form-control" />
                     <span asp-validation-for="VrijediDo" class="text-danger"></span>
                 </div>
+                <div class="input-boxUrediProjekciju">
+                    <label asp-for="Cijena" class="detailsUrediProjekciju">Cijena karte</label>
+                    <input asp-for="Cijena" class="form-control" />
+                    <span asp-validation-for="Cijena" class="text-danger"></span>
+                </div>
+            </div>
 
+            <div style="display:flex; flex-wrap:wrap; padding:10px; margin-top:20px">
                 <div class="form-group">
                     <input type="submit" value="Snimi" class="btn btn-primary" />
                 </div>
-            </form>
-        </div>
+
+                <div class="form-group" style="margin-left:20px;">
+                    <input asp-action="Index" asp-controller="Projekcija" type="submit" value="Nazad na listu" class="btn btn-danger" />
+                </div>
+            </div>
+        </form>
     </div>
 
-    <button class="buttonProjekcijaDodaj">
+    @*    <button class="buttonProjekcijaDodaj">
         <a asp-action="Index">Nazad na listu</a>
-    </button>
-@*</div>*@
+        </button>*@
+</div>
 

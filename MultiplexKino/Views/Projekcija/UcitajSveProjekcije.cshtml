@@ -1,6 +1,5 @@
 ﻿@model List<MultiplexKino.Models.Projekcija.ProjekcijaUcitajSveVM>
 
-
 @{
     ViewData["Title"] = "UcitajSveProjekcije";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -28,6 +27,15 @@
             </form>
         </div>
     </div>
+
+    <br />
+
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success" style="background-color:white; color:black; font-size:1.2em">
+            <strong>Success !</strong> @TempData["AlertMessage"]
+        </div>
+    }
 
     @if (Model.Count() == 0)
     {

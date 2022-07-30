@@ -104,6 +104,7 @@ namespace MultiplexKino.Controllers
                 });
 
                 _dbContext.SaveChanges();
+                TempData["AlertMessage"] = "Film uspješno dodan...!";
             }
             catch (Exception ex)
             {
@@ -171,6 +172,7 @@ namespace MultiplexKino.Controllers
                     }
 
                     _dbContext.SaveChanges();
+                    TempData["AlertMessage"] = "Film uspješno editovan...!";
                 }
             }
             catch (Exception ex)
@@ -191,6 +193,7 @@ namespace MultiplexKino.Controllers
                 {
                     _dbContext.Film.Remove(film);
                     _dbContext.SaveChanges();
+                    TempData["AlertMessage"] = "Film uspješno uklonjen...!";
                 }
             }
             catch (Exception ex)

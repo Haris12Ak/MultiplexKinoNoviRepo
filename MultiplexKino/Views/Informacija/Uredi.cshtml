@@ -5,33 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 style="color:whitesmoke">Uredi Informaciju: '@Model.Naziv'</h1>
-<hr style="color:whitesmoke" />
-<div class="row">
-    <div class="formInformacija">
+<div class="containerInformacija">
+    <div class="titleInformacija">Dodavanje informacije</div>
+    <div class="contetntInformacija">
         <form asp-action="Uredi" method="post" enctype="multipart/form-data">
-         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-         <input type="hidden" name="Id" value="@Model.Id" />
-            <div class="form-group">
-                <label style="color:whitesmoke; font-size:1.3em" asp-for="Naziv" class="control-label">Naziv informacije</label>
-                <input style="width:40%; border:1px solid black; color:black; background-color:rgb(255,255,255,.8)" asp-for="Naziv" class="form-control" />
-                <span asp-validation-for="Naziv" class="text-danger"></span>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <div class="user-detailsInformacija">
+                <div class="input-boxInformacija">
+                    <label asp-for="Naziv" class="detailsInformacija">Naziv informacije</label>
+                    <input asp-for="Naziv" class="form-control" />
+                    <span asp-validation-for="Naziv" class="text-danger"></span>
+                </div>
+
+                <div class="input-boxInformacija">
+                    <label asp-for="Opis" class="detailsInformacija">Opis</label>
+                    <textarea asp-for="Opis" class="form-control" rows="12"></textarea>
+                    <span asp-validation-for="Opis" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label style="color:whitesmoke; font-size:1.3em" asp-for="Opis" class="control-label">Opis</label>
-                <textarea style="border:1px solid black; color:black; background-color:rgb(255,255,255,.8)" asp-for="Opis" class="form-control" rows="12"></textarea>
-                <span asp-validation-for="Opis" class="text-danger"></span>
-            </div>
+            <div style="display:flex; flex-wrap:wrap; padding:10px; margin-top:80px">
+                <div class="form-group">
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
 
-            <div class="form-group" style="margin:15px 0 15px 5px">
-                <input type="submit" value="Snimi" class="btn btn-primary" />
+                <div class="form-group" style="margin-left:20px;">
+                    <input asp-action="Index" asp-controller="Informacija" type="submit" value="Nazad na listu" class="btn btn-danger" />
+                </div>
             </div>
         </form>
     </div>
 </div>
-
-<button class="btnListaInformacija">
-    <a asp-action="Index">Nazad na listu</a>
-</button>
 

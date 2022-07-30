@@ -84,6 +84,7 @@ namespace MultiplexKino.Controllers
                     });
 
                     _dbContext.SaveChanges();
+                    TempData["AlertMessage"] = "Projekcija uspješno dodana...!";
                 }
             }
             catch (Exception ex)
@@ -356,6 +357,7 @@ namespace MultiplexKino.Controllers
                     projekcija.VrijediDo = model.VrijediDo;
 
                     _dbContext.SaveChanges();
+                    TempData["AlertMessage"] = "Projekcija uspješno editovana...!";
                 }
             }
             catch (Exception ex)
@@ -376,6 +378,7 @@ namespace MultiplexKino.Controllers
                 {
                     _dbContext.Projekcija.Remove(projekcija);
                     _dbContext.SaveChanges();
+                    TempData["AlertMessage"] = "Projekcija uspješno uklonjena...!";
                 }
             }
             catch (Exception ex)

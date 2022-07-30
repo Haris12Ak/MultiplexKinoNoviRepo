@@ -14,6 +14,15 @@
         <a class="adminLink" asp-area="" asp-controller="Informacija" asp-action="Index">Upravljanje Informacijama</a>
     </div>
 
+    <br />
+
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success" style="font-size:1.2em">
+            <strong>Success !</strong> @TempData["AlertMessage"]
+        </div>
+    }
+
     <table class="table">
         <thead>
             <tr>

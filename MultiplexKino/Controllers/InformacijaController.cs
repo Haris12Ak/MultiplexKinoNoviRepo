@@ -50,6 +50,7 @@ namespace MultiplexKino.Controllers
                 });
 
                 _dbContext.SaveChanges();
+                TempData["AlertMessage"] = "Informacija uspješno dodana...!";
             }
             catch (Exception ex)
             {
@@ -87,13 +88,14 @@ namespace MultiplexKino.Controllers
             {
                 var informacija = _dbContext.Informacije.FirstOrDefault(x => x.Id == model.Id);
 
-                if(informacija != null)
+                if (informacija != null)
                 {
                     informacija.Naziv = model.Naziv;
                     informacija.Opis = model.Opis;
                 }
 
                 _dbContext.SaveChanges();
+                TempData["AlertMessage"] = "Informacija uspješno izmjenjena...!";
             }
             catch (Exception ex)
             {
@@ -109,10 +111,11 @@ namespace MultiplexKino.Controllers
             {
                 var informacija = _dbContext.Informacije.FirstOrDefault(x => x.Id == id);
 
-                if(informacija != null)
+                if (informacija != null)
                 {
                     _dbContext.Informacije.Remove(informacija);
                     _dbContext.SaveChanges();
+                    TempData["AlertMessage"] = "Informacija uspješno uklonjena...!";
                 }
             }
             catch (Exception ex)
@@ -143,7 +146,7 @@ namespace MultiplexKino.Controllers
         {
             var informacija = _dbContext.Informacije.FirstOrDefault(x => x.Id == id);
 
-            if(informacija != null)
+            if (informacija != null)
             {
                 return View(new InformacijaPrikazVM
                 {
